@@ -11,7 +11,8 @@ router.get('/', (req,res) =>{
     console.log(req.query.id);
     const userId = req.query.id;
     let found = false;
-    for(let i = 0 ; i < users.length; i++){
+    for(let i = 0 ; i < users.length; i++)
+    {
         if(users[i].id == userId){
             res.send(users[i]);
             found = true;
@@ -34,6 +35,5 @@ router.delete('/:id',(req,res) =>{
     res.status(201);
     res.send("The user have been deleted")
 })
-
 //sa facem si pt postari
 module.exports = router;
