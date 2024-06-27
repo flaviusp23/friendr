@@ -1,6 +1,10 @@
 const userModel = require("../data/user.model");
 
 const usersServices = {
+    getUserById: async (userId) => {
+        const response = await userModel.findOne({id:userId},{});
+        return response;
+    },
     createUsers: (userObj) => {
         console.log("Reached user services");
         console.log(userObj);
