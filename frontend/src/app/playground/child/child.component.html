@@ -1,0 +1,15 @@
+<!-- BIDING -->
+<div class="child">
+  <div>
+    {{ postInput.title | titlecase }}
+    <!-- asta e pentru litera mare la primu cuv, se numeste PIPE-->
+  </div>
+  <div>
+    {{ postInput.date | date }}
+    <!-- asta e ca sa arate frumos data adica chestia cu | -->
+  </div>
+  <div>
+    {{ postInput.description }}
+  </div>
+  <button (click)="likePost()">Like</button>
+</div>
