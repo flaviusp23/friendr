@@ -2,19 +2,18 @@ const usersServices = require("../services/userServices");
 
 const usersController = {
     getUsers: async(req,res) => {
-        console.log("Reached GET user controller");
+        console.log("\nReached GET user controller");
         const userId = req.params.id;
         console.log(userId);
         const userObj = await usersServices.getUserById(userId);
         res.status(200).send(userObj);
-
     },
     createUsers: async(req,res) => {
-        console.log("Reached CREATED user controller");
+        console.log("\nReached POST user controller");
         const userToBeCreated = req.body;
         console.log(userToBeCreated);
         if( !userToBeCreated ||
-            !userToBeCreated.id ||
+            !userToBeCreated?.id ||
             !userToBeCreated?.firstName ||
             !userToBeCreated?.lastName ||
             !userToBeCreated?.userName){
@@ -25,8 +24,11 @@ const usersController = {
         res.status(201).send("User Created Successfully!");
     },
     deleteUsers: async(req, res) => {
-        console.log(`Delete user with id:${userId} in controller`);
+        const userId = req.query.id;
+        console.log("\nReached DELETE user controller");
+        console.log(userId);
         usersServices.deleteUsers(userId);
+        res.status(200).send("User deleted");
     }
 }
 

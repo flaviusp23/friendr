@@ -1,10 +1,23 @@
+const postModel = require("../data/post.model");
+
 const postsServices = {
-    createPosts: (postObj) => {
-        console.log("Reached post services");
-        console.log(postObj);
+    getPosts: async(postId) => {
+        console.log("Reached GET post services");
+        console.log(postId)
+        const response = await postModel.findOne({id:postId},{})
+        return response
     },
-    deletePosts: (postId) => {
-        console.log(`Delete post with id:${postId} in services`);
+    createPosts: (postObj) => {
+        console.log("Reached POST post services");
+        console.log(postObj)
+        const userToBeCreated = new postModel(postObj);
+        userToBeCreated.save().then(() => console.log("Post created"))
+    },
+    deletePosts: async (postId) => {
+        console.log("Reached DELETE post services");
+        console.log(postId)
+        const response = await postModel.deleteOne({id:postId})
+        return response
     }
 }
 
