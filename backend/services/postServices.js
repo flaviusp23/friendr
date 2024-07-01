@@ -13,6 +13,11 @@ const postsServices = {
         const userToBeCreated = new postModel(postObj);
         userToBeCreated.save().then(() => console.log("Post created"))
     },
+    getAllPosts: async () =>{
+        console.log("Reached GET ALL post services")
+        const response = await postModel.find()
+        return response
+    },
     deletePosts: async (postId) => {
         console.log("Reached DELETE post services");
         console.log(postId)

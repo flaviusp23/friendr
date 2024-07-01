@@ -20,9 +20,14 @@ const postsController = {
            res.status(400).send("Invalid post Object")
            return
         }
-        postToBeCreated.date = new Date().toString()
+        postToBeCreated.date = new Date().toISOString()
         postsServices.createPosts(postToBeCreated)
         res.status(201).send("Post created");
+    },
+    getAllPosts: async(req,res) =>{
+        console.log("\n Reached GET ALL post controller");
+        const postsObj = await postsServices.getAllPosts();
+        res.status(200).send(postsObj)
     },
     deletePosts: async(req,res) =>{
         console.log("\nReached DELETE post controller");
