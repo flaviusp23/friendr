@@ -13,14 +13,12 @@ const postsController = {
         const postToBeCreated = req.body
         console.log(postToBeCreated)
         if(!postToBeCreated ||
-           !postToBeCreated?.id ||
-           !postToBeCreated?.user_id ||
+           !postToBeCreated?.author ||
            !postToBeCreated?.title ||
            !postToBeCreated?.description){
            res.status(400).send("Invalid post Object")
            return
         }
-        postToBeCreated.date = new Date().toISOString()
         postsServices.createPosts(postToBeCreated)
         res.status(201).send("Post created");
     },

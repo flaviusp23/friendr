@@ -1,5 +1,5 @@
 const postModel = require("../data/post.model");
-
+const { v4:uuidv4 } = require('uuid');
 const postsServices = {
     getPosts: async(postId) => {
         console.log("Reached GET post services");
@@ -9,9 +9,11 @@ const postsServices = {
     },
     createPosts: (postObj) => {
         console.log("Reached POST post services");
-        console.log(postObj)
-        const userToBeCreated = new postModel(postObj);
-        userToBeCreated.save().then(() => console.log("Post created"))
+        console.log(postObj);
+        postObj.id = uuidv4();
+        postObj.date = new Date().toISOString()
+        const postToBeCreated = new postModel(postObj);
+        postToBeCreated.save().then(() => console.log("Post created"))
     },
     getAllPosts: async () =>{
         console.log("Reached GET ALL post services")

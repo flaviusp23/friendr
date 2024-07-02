@@ -9,10 +9,10 @@ const routes: Routes = [
     path:'',component:LoginComponent
   },
   {
-    path:'homepage',component:HomepageComponent
+    path:'homepage',component:HomepageComponent,
   },
   {
-    path:'**',component:LoginComponent
+    path:'**',redirectTo:''// o varianta ar trb sa punem o alta componenta notfound dar e mai bine asa cu redicrect
   }
 ];
 
