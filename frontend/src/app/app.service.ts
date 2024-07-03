@@ -12,4 +12,7 @@ export class AppService {
   getUserByUsername(username : string): Observable<any>{
     return this.http.get(`http://localhost:3000/users/${username}`);
   }
+  getPosts(): Observable<any>{
+    return this.http.get('http://localhost:3000/posts/')
+  }
 }
