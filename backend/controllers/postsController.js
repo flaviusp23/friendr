@@ -27,6 +27,27 @@ const postsController = {
         const postsObj = await postsServices.getAllPosts();
         res.status(200).send(postsObj)
     },
+    updatePostLikes: async(req,res)=>{
+        console.log("\nReached UPDATE LIKES post controller");
+        const postId = req.params.id;
+        const username = req.body.username;
+        
+        const postObj = await postsServices.getPosts(postId);
+        if(!postObj){
+            res.status(404).send();
+            return;
+        }
+        const likes = postObj.likes;
+
+        if(likes.includes(username)){
+            await postsServices.removePostLikes(postId,username);
+        }
+        else {
+            await postsServices.addPostLikes(postId,username);
+        }
+        const updatedPostObj = await postsServices.getPosts(postId);//luam postare actualizata ca sa o trimitem
+        res.status(200).send(updatedPostObj)
+    },
     deletePosts: async(req,res) =>{
         console.log("\nReached DELETE post controller");
         const postId = req.query.id

@@ -5,7 +5,8 @@ const postModel = mongoose.model('Post',{
     date:String,
     author: String,
     title: String,
-    description: String
+    description: String,
+    likes: [String]   // un array de userid cu cine a dat like
 })
 
 module.exports = postModel
