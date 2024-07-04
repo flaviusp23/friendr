@@ -1,10 +1,24 @@
-main {
+.add-post-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 3rem;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+
+  input {
     width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
   }
+}
+
+.go-back {
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+
+  b {
+    color: blue;
+  }
+}

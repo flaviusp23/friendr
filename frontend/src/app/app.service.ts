@@ -12,7 +12,23 @@ export class AppService {
   getUserByUsername(username : string): Observable<any>{
     return this.http.get(`http://localhost:3000/users/${username}`);
   }
+  getPostById(postId : string):Observable<any>{
+    return this.http.get(`http://localhost:3000/posts/${postId}`)
+  }
   getPosts(): Observable<any>{
     return this.http.get('http://localhost:3000/posts/')
   }
+  likePost(postId: string, username: string): Observable<any> {
+    return this.http.patch(`http://localhost:3000/posts/${postId}/likes`, { username });
+  }
+  createPost(author: string, title: string, description: string){
+    const body = {
+      author: author,
+      title: title,
+      description: description
+    };
+    console.log(body)
+    return this.http.post('http://localhost:3000/posts', body);
+  }
+
 }
