@@ -10,7 +10,7 @@ const usersServices = {
     getUserByUsername: async (username) => {
         console.log("Reached GET user services");
         console.log(username)
-        const response = await userModel.findOne({username:username},{firstName : 1 ,lastName : 1})
+        const response = await userModel.findOne({username:username})
         return response;
     },
     createUsers: (userObj) => {
@@ -27,15 +27,15 @@ const usersServices = {
         console.log("User deleted")
         return response
     },
-    removeFollowUser: async(userId,username) => {
+    removeFollowUser: async(usernameToBeFollowed,username) => {
         console.log("Reached REMOVE FOLLOW user services")
-        console.log(userId,username)
-        await userModel.updateOne({id:userId},{$pull:{followers:username}});
+        console.log(usernameToBeFollowed,username)
+        await userModel.updateOne({username:usernameToBeFollowed},{$pull:{followers:username}});
     },
-    addFollowUser: async(userId,username) => {
+    addFollowUser: async(usernameToBeFollowed,username) => {
         console.log("Reached ADD FOLLOW user services")
-        console.log(userId,username)
-        await userModel.updateOne({id:userId},{$push:{followers:username}});
+        console.log(usernameToBeFollowed,username)
+        await userModel.updateOne({username:usernameToBeFollowed},{$push:{followers:username}});
     },
 }
 

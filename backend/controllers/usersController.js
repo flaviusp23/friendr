@@ -34,27 +34,27 @@ const usersController = {
         res.status(200).json({ message: "User deleted" });
     },
     followUsers: async (req, res) => {
-        const userId = req.params.id;
+        const usernameToBeFollowed = req.params.username;
         const username = req.body.username;
         console.log("\nReached FOLLOW user controller");
-        console.log(userId);
+        console.log(usernameToBeFollowed);
 
         if (!username) {
             res.status(400).json({ message: "Username is required" });
             return;
         }
-        const userObj = await usersServices.getUserById(userId);
+        const userObj = await usersServices.getUserByUsername(usernameToBeFollowed);
         if (!userObj) {
             res.status(404).json({ message: "User not found" });
             return;
         }
         const followers = userObj.followers;
         if (followers.includes(username)) {
-            await usersServices.removeFollowUser(userId, username);
+            await usersServices.removeFollowUser(usernameToBeFollowed, username);
         } else {
-            await usersServices.addFollowUser(userId, username);
+            await usersServices.addFollowUser(usernameToBeFollowed, username);
         }
-        const updatedUserObj = await usersServices.getUserById(userId);
+        const updatedUserObj = await usersServices.getUserByUsername(usernameToBeFollowed);
         res.status(200).json(updatedUserObj);
     }
 };

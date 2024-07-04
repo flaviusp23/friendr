@@ -7,7 +7,9 @@
         <div class="post-date-created">{{ postInput?.date | date }}</div>
       </div>
     </div>
-    <button class="following-btn">Following</button>
+    <button class="following-btn" (click)="follow()">
+      {{ isFollowingUser ? "Unfollow" : "Follow" }}
+    </button>
     <!-- <button class="follow-btn">Follow</button> -->
   </div>
   <div class="post-content" (click)="redirectToPost(postInput?.id)">

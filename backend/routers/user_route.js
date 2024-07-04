@@ -5,6 +5,6 @@ const usersController = require('../controllers/usersController');
 router.post('/',usersController.createUsers)
 router.get('/:username',usersController.getUsers)
 router.delete('/',usersController.deleteUsers)
-router.patch('/:id/follow',usersController.followUsers)
+router.patch('/:username/follow',usersController.followUsers)
 
 module.exports = router;

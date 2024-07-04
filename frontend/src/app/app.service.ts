@@ -21,6 +21,9 @@ export class AppService {
   likePost(postId: string, username: string): Observable<any> {
     return this.http.patch(`http://localhost:3000/posts/${postId}/likes`, { username });
   }
+  followUser(usernameToBeFollowed: string, username: string): Observable<any> {
+    return this.http.patch(`http://localhost:3000/users/${usernameToBeFollowed}/follow`, { username });
+  }
   createPost(author: string, title: string, description: string){
     const body = {
       author: author,
