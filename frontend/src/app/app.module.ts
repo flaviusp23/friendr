@@ -10,6 +10,7 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { PostComponent } from './post/post.component';
 import { CreatepostComponent } from './createpost/createpost.component';
+import { PostdetailComponent } from './postdetail/postdetail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreatepostComponent } from './createpost/createpost.component';
     HomepageComponent,
     TopNavbarComponent,
     PostComponent,
-    CreatepostComponent
+    CreatepostComponent,
+    PostdetailComponent
   ],
   imports: [
     BrowserModule,
