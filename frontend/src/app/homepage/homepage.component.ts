@@ -23,8 +23,4 @@ export class HomepageComponent {
       }
     })
   }
-
-  getUser() {}
-
-  getPosts() {}
 }

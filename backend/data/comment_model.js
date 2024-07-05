@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 const commentModel = mongoose.model('Comment',{
     id: String,
-    user_id:String,
+    username:String,
     post_id:String,
     date:String,
-    description:String
+    content:String
 })
 
 module.exports = commentModel

@@ -11,6 +11,7 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { PostComponent } from './post/post.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { PostdetailComponent } from './postdetail/postdetail.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PostdetailComponent } from './postdetail/postdetail.component';
     TopNavbarComponent,
     PostComponent,
     CreatepostComponent,
-    PostdetailComponent
+    PostdetailComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

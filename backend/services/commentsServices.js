@@ -15,5 +15,11 @@ const commentsServices = {
         const commentToBeCreated = new commentModel(commentObj);
         commentToBeCreated.save().then(() => console.log("Comment created"))
     },
+    getAllComments: async(postId) =>{
+        console.log("Reached GET ALL comments services")
+        console.log(postId)
+        const response = await commentModel.find({post_id:postId},{});
+        return response
+    }
 }
 module.exports = commentsServices

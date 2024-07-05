@@ -18,6 +18,9 @@ export class AppService {
   getPosts(): Observable<any>{
     return this.http.get('http://localhost:3000/posts/')
   }
+  getComments(postId: string): Observable<any>{
+    return this.http.get(`http://localhost:3000/comments?postId=${postId}`)
+  }
   likePost(postId: string, username: string): Observable<any> {
     return this.http.patch(`http://localhost:3000/posts/${postId}/likes`, { username });
   }

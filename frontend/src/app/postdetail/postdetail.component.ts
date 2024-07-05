@@ -12,8 +12,22 @@ export class PostdetailComponent implements OnInit {
   postId = localStorage.getItem('postId') || '';
   userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
   post: any = {}; // This will hold the post data
-
-  constructor(private appService: AppService) {}
+  comments: any = [];
+  constructor(private appService: AppService) {
+    console.log(this.postId)
+    this.appService
+    .getComments(this.postId)
+    .pipe(first())
+    .subscribe({
+      next:(response) => {
+        console.log(response);
+        this.comments = response;
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
+  }
 
   ngOnInit() {
     this.fetchPostDetails();

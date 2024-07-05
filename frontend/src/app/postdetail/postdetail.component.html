@@ -35,6 +35,11 @@
         </div>
       </div>
       <div class="post-footer"></div>
+      <div class="comments">
+        <ng-container *ngFor="let comment of comments">
+          <app-comment [commentInput]="comment"></app-comment>
+        </ng-container>
+      </div>
     </div>
   </div>
 </main>
