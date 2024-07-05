@@ -1,6 +1,7 @@
 const express = require('express')
 const usersRouter = require('./routers/user_route')
 const postsRouter = require('./routers/post_route')
+const commentsRouter = require('./routers/comment_route')
 const mongoose = require('mongoose')
 const cors = require('cors');
 
@@ -15,6 +16,7 @@ app.use(cors())
 
 app.use('/users',usersRouter);
 app.use('/posts',postsRouter);
+app.use('/comments',commentsRouter)
 
 app.listen(port, () => {
     console.log(`example app listening on port ${port}`)
