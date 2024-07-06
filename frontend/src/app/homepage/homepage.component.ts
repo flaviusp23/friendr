@@ -15,7 +15,6 @@ export class HomepageComponent {
     .pipe(first())
     .subscribe({
       next:(response) => {
-        console.log(response);
         this.posts = response;
       },
       error:(error)=>{

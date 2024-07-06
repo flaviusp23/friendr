@@ -10,7 +10,6 @@
     <button class="following-btn" (click)="follow()">
       {{ isFollowingUser ? "Unfollow" : "Follow" }}
     </button>
-    <!-- <button class="follow-btn">Follow</button> -->
   </div>
   <div class="post-content" (click)="redirectToPost(postInput?.id)">
     <div class="post-body">
@@ -23,11 +22,14 @@
   <div class="post-stats">
     <div class="likes">
       <img src="/assets/images/heart.png" (click)="onLike()" />
-      <div class="like-count">{{ postInput?.likes.length }}</div>
+      <div class="like-count">{{ postInput?.likes?.length || 0 }}</div>
     </div>
     <div class="comms">
-      <img src="/assets/images/comms.png" />
-      <div class="comms-count">3</div>
+      <img
+        src="/assets/images/comms.png"
+        (click)="redirectToPost(postInput?.id)"
+      />
+      <div class="comms-count">{{ comments.length || 0 }}</div>
     </div>
     <div class="shares">
       <img src="/assets/images/share.png" />

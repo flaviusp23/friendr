@@ -1,45 +1,10 @@
 <main>
   <div class="posts-container">
-    <div class="post">
-      <div class="post-header">
-        <div class="post-header-profile">
-          <img class="avatar" [src]="userAvatarUrl" />
-          <div class="post-user-details">
-            <div class="post-username">{{ post.author }}</div>
-            <div class="post-date-created">{{ post.date | date }}</div>
-          </div>
-        </div>
-        <button class="following-btn">Following</button>
-        <!-- <button class="follow-btn">Follow</button> -->
-      </div>
-      <div class="post-content">
-        <div class="post-body">
-          <div>
-            {{ post.description }}
-          </div>
-          <img src="/assets/images/post.png" />
-        </div>
-      </div>
-      <div class="post-stats">
-        <div class="likes">
-          <img src="/assets/images/heart.png" (click)="onLike()" />
-          <div class="like-count">{{ post.likes.length }}</div>
-        </div>
-        <div class="comms">
-          <img src="/assets/images/comms.png" />
-          <div class="comms-count">3</div>
-        </div>
-        <div class="shares">
-          <img src="/assets/images/share.png" />
-          <div class="share-count">2</div>
-        </div>
-      </div>
-      <div class="post-footer"></div>
-      <div class="comments">
-        <ng-container *ngFor="let comment of comments">
-          <app-comment [commentInput]="comment"></app-comment>
-        </ng-container>
-      </div>
+    <app-post [postInput]="post"></app-post>
+    <div class="comments">
+      <ng-container *ngFor="let comment of comments">
+        <app-comment [commentInput]="comment"></app-comment>
+      </ng-container>
     </div>
   </div>
 </main>
