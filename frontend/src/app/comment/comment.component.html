@@ -5,25 +5,25 @@
       <span class="username">{{ commentInput.username }}</span>
     </div>
     <span class="date">{{ commentInput.date | date }}</span>
-    <div class="actions">
-      <img
-        *ngIf="isMyComment()"
-        src="/assets/images/edit.png"
-        class="edit-icon"
-        alt="Edit"
-        title="Edit"
-      />
-      <img
-        *ngIf="isMyComment()"
-        src="/assets/images/delete.png"
-        class="delete-icon"
-        alt="Delete"
-        title="Delete"
-        (click)="deleteComment()"
-      />
-    </div>
   </div>
   <div class="content">
     {{ commentInput.content }}
+  </div>
+  <div class="actions">
+    <img
+      *ngIf="isMyComment()"
+      src="/assets/images/edit.png"
+      class="edit-icon"
+      alt="Edit"
+      title="Edit"
+    />
+    <img
+      *ngIf="isMyComment()"
+      src="/assets/images/delete.png"
+      class="delete-icon"
+      alt="Delete"
+      title="Delete"
+      (click)="deleteComment()"
+    />
   </div>
 </div>

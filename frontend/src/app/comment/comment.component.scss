@@ -1,4 +1,6 @@
 .comment {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #ccc;
@@ -36,12 +38,21 @@
   font-size: 0.9em;
 }
 
-.comment .header .actions {
-  display: flex;
-  align-items: center;
+.comment .content {
+  font-size: 1em;
+  line-height: 1.4;
+  flex-grow: 1; /* Take up remaining space */
+  word-wrap: break-word; /* Wrap long words */
 }
 
-.comment .header .actions img {
+.comment .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align actions to the right */
+  margin-top: 10px; /* Add spacing between content and actions */
+}
+
+.comment .actions img {
   margin-left: 10px;
   cursor: pointer;
   width: 20px;
@@ -49,11 +60,6 @@
   transition: transform 0.2s;
 }
 
-.comment .header .actions img:hover {
+.comment .actions img:hover {
   transform: scale(1.1);
-}
-
-.comment .content {
-  font-size: 1em;
-  line-height: 1.4;
 }
