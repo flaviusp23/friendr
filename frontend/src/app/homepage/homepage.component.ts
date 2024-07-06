@@ -22,4 +22,18 @@ export class HomepageComponent {
       }
     })
   }
+
+  refreshPosts(): void {
+    this.appService
+    .getPosts()
+    .pipe(first())
+    .subscribe({
+      next:(response) => {
+        this.posts = response;
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
+  }
 }

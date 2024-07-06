@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { first } from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class PostComponent {
   ) {}
 
   @Input() postInput: any;
+  @Output() postDeleted = new EventEmitter<void>();
 
   ngOnInit() {
     this.checkIfFollowing();
@@ -105,6 +106,7 @@ export class PostComponent {
     .subscribe({
       next: (response) =>{
         console.log("Post Deleted")
+        this.postDeleted.emit();
       },
       error: (error) =>{
         console.log(error)
