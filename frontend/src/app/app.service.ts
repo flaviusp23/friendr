@@ -36,5 +36,14 @@ export class AppService {
     console.log(body)
     return this.http.post('http://localhost:3000/posts', body);
   }
+  createComment(username: string, postId: string, content: string){
+    const body = {
+      username: username,
+      post_id: postId,
+      content: content
+    };
+    console.log(body)
+    return this.http.post('http://localhost:3000/comments', body);
+  }
 
 }

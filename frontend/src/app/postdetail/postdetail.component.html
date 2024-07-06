@@ -2,6 +2,8 @@
   <div class="posts-container">
     <app-post [postInput]="post"></app-post>
     <div class="comments">
+      <input placeholder="Add a comment" [(ngModel)]="content" />
+      <button (click)="createComment()">Submit</button>
       <ng-container *ngFor="let comment of comments">
         <app-comment [commentInput]="comment"></app-comment>
       </ng-container>

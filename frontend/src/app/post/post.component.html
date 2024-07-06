@@ -29,7 +29,7 @@
         src="/assets/images/comms.png"
         (click)="redirectToPost(postInput?.id)"
       />
-      <div class="comms-count">{{ comments.length || 0 }}</div>
+      <div class="comms-count">{{ postInput?.commentCount || 0 }}</div>
     </div>
     <div class="shares">
       <img src="/assets/images/share.png" />

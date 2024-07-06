@@ -80,6 +80,7 @@ export class PostComponent {
     this.appService.getComments(postId).pipe(first()).subscribe({
       next: (response) => {
         this.comments = response;
+        this.postInput.commentCount = response.length;
         console.log(this.comments);
       },
       error: (error) => {
