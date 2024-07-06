@@ -1,14 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AppService } from '../app.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrl: './comment.component.scss'
+  styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent {
-  constructor(private appService: AppService){}
-
+  username = localStorage.getItem('username');
   @Input() commentInput: any;
-  
+  @Output() commentDeleted = new EventEmitter<void>();
+
+  constructor(private appService: AppService) {}
+
+  isMyComment(): boolean {
+    return this.username === this.commentInput.username;
+  }
+
+  deleteComment(): void {
+    this.appService.deleteComment(this.commentInput.id)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          console.log("Comment deleted");
+          this.commentDeleted.emit(); // Emit event when comment is deleted
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+  }
 }

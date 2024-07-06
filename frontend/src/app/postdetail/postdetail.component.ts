@@ -11,15 +11,13 @@ import { Router } from '@angular/router';
 export class PostdetailComponent implements OnInit {
   username = localStorage.getItem('username') || '';
   postId = localStorage.getItem('postId') || '';
-  userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
   post: any = {}; // This will hold the post data
   comments: any = [];
-  content : string = '';
+  content: string = '';
 
-  constructor(private router:Router,private appService: AppService) {}
+  constructor(private router: Router, private appService: AppService) {}
 
   ngOnInit(): void {
-    
     this.getPost();
     this.getComments();
   }
@@ -34,31 +32,30 @@ export class PostdetailComponent implements OnInit {
       }
     });
   }
+
   createComment(): void {
-    this.appService
-      .createComment(this.username, this.postId, this.content)
+    this.appService.createComment(this.username, this.postId, this.content)
       .pipe(first())
       .subscribe({
-        next: (response) => {
-          this.getComments();
-          this.updatePostCommentCount();
+        next: () => {
+          this.refreshComments();
           this.content = ''; // Clear the input field
         },
         error: (error) => {
-          console.log(error)
+          console.log(error);
         }
-      })
+      });
   }
 
-  updatePostCommentCount(): void {
-    if (this.post) {
-      this.post.commentCount = (this.post.commentCount || 0) + 1;
-    }
+  refreshComments(): void {
+    this.getComments();
   }
+
   getComments(): void {
     this.appService.getComments(this.postId).pipe(first()).subscribe({
       next: (response) => {
         this.comments = response;
+        this.post.commentCount = response.length; // Update the comment count
       },
       error: (error) => {
         console.log(error);

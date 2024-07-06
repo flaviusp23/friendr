@@ -20,6 +20,18 @@ const commentsServices = {
         console.log(postId)
         const response = await commentModel.find({post_id:postId},{});
         return response
+    },
+    deleteOneComment: async(commentId) =>{
+        console.log("\nReached DELETE comments services")
+        console.log(commentId)
+        const response = await commentModel.deleteOne({id:commentId})
+        return response;
+    },
+    deleteAllCommentsByPostId: async(postId) =>{
+        console.log("\nReached DELETE BY POST ID comments services")
+        console.log(postId)
+        const response = await commentModel.deleteMany({post_id:postId})
+        return response;
     }
 }
 module.exports = commentsServices

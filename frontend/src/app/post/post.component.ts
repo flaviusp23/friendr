@@ -26,6 +26,7 @@ export class PostComponent {
     this.checkIfFollowing();
     this.getComments();
   }
+
   checkIfFollowing() {
     const author = this.postInput?.author || localStorage.getItem('author') || ''
     this.appService
@@ -40,6 +41,7 @@ export class PostComponent {
         }
       });
   }
+
   onLike() {
     this.appService
       .likePost(this.postInput.id, this.username)
@@ -54,6 +56,7 @@ export class PostComponent {
         }
       });
   }
+
   follow() {
     const action = this.isFollowingUser ? 'unfollowUser' : 'followUser';
     const author = this.postInput?.author || localStorage.getItem('author') || ''
@@ -70,11 +73,13 @@ export class PostComponent {
         }
       });
   }
+
   redirectToPost(postId: string) {
     this.router.navigate(['/posts', postId]);
     localStorage.setItem('postId', postId);
     localStorage.setItem('author', this.postInput.author);
   }
+
   getComments(): void {
     const postId = this.postInput.id || localStorage.getItem('postId') || '';
     this.appService.getComments(postId).pipe(first()).subscribe({

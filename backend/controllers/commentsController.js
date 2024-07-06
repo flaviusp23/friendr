@@ -29,6 +29,22 @@ const commentsController = {
         console.log(postId)
         const comments = await commentsServices.getAllComments(postId);
         res.status(200).json(comments);
+    },
+    deleteOneComment: async(req,res) =>{
+        console.log("\nReached DELETE comments controller")
+        const commentId = req.params.id;
+        console.log(commentId)
+        await commentsServices.deleteOneComment(commentId);
+        res.status(200).json({ message: "Comment deleted" });
+
+    },
+    deleteAllCommentsByPostId: async(req,res) => {
+        console.log("\nReached DELETE BY POST ID comments controller")
+        const postId = req.query.postId;
+        console.log(postId)
+        await commentsServices.deleteAllCommentsByPostId(postId);
+        res.status(200).json({ message: "Comments by postId deleted" });
+
     }
 }
 

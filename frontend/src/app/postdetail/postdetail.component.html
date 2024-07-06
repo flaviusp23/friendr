@@ -5,7 +5,10 @@
       <input placeholder="Add a comment" [(ngModel)]="content" />
       <button (click)="createComment()">Submit</button>
       <ng-container *ngFor="let comment of comments">
-        <app-comment [commentInput]="comment"></app-comment>
+        <app-comment
+          [commentInput]="comment"
+          (commentDeleted)="refreshComments()"
+        ></app-comment>
       </ng-container>
     </div>
   </div>

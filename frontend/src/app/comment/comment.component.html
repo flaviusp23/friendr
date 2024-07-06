@@ -2,6 +2,23 @@
   <div class="header">
     <span class="username">{{ commentInput.username }}</span>
     <span class="date">{{ commentInput.date | date }}</span>
+    <span class="actions">
+      <img
+        *ngIf="isMyComment()"
+        src="/assets/images/edit.png"
+        class="edit-icon"
+        alt="Edit"
+        title="Edit"
+      />
+      <img
+        *ngIf="isMyComment()"
+        src="/assets/images/delete.png"
+        class="delete-icon"
+        alt="Delete"
+        title="Delete"
+        (click)="deleteComment()"
+      />
+    </span>
   </div>
   <div class="content">
     {{ commentInput.content }}

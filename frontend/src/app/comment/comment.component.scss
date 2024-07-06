@@ -1,27 +1,48 @@
-
 .comment {
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
-  
-  .header {
-    margin-bottom: 10px;
-    font-weight: bold;
-    
-    .username {
-      margin-right: 10px;
-      color: #333;
-    }
-    
-    .date {
-      color: #666;
-      font-size: 0.9em;
-    }
-  }
-  
-  .content {
-    font-size: 1em;
-    line-height: 1.4;
-  }
+  border-radius: 5px; /* Added border-radius for smoother edges */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow for depth */
+}
+
+.comment .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.comment .header .username {
+  margin-right: 10px;
+  color: #333;
+}
+
+.comment .header .date {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.comment .header .actions {
+  display: flex;
+  align-items: center;
+}
+
+.comment .header .actions img {
+  margin-left: 10px;
+  cursor: pointer;
+  width: 20px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+  transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+.comment .header .actions img:hover {
+  transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+.comment .content {
+  font-size: 1em;
+  line-height: 1.4;
 }

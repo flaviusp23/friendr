@@ -45,5 +45,8 @@ export class AppService {
     console.log(body)
     return this.http.post('http://localhost:3000/comments', body);
   }
+  deleteComment(commentId:string){
+    return this.http.delete(`http://localhost:3000/comments/${commentId}`)
+  }
 
 }
