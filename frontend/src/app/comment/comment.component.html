@@ -1,8 +1,11 @@
 <div class="comment">
   <div class="header">
-    <span class="username">{{ commentInput.username }}</span>
+    <div class="user-profile">
+      <img class="avatar" [src]="userAvatarUrl" alt="Profile Picture" />
+      <span class="username">{{ commentInput.username }}</span>
+    </div>
     <span class="date">{{ commentInput.date | date }}</span>
-    <span class="actions">
+    <div class="actions">
       <img
         *ngIf="isMyComment()"
         src="/assets/images/edit.png"
@@ -18,7 +21,7 @@
         title="Delete"
         (click)="deleteComment()"
       />
-    </span>
+    </div>
   </div>
   <div class="content">
     {{ commentInput.content }}

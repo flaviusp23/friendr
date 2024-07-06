@@ -1,7 +1,9 @@
 <header>
   <div class="logo" [routerLink]="'homepage'">Homepage</div>
+  <input type="text" placeholder="Search users..." class="search-input" />
   <div class="profile">
     <div>Hello, {{ username }}</div>
+    <button class="logout-button" [routerLink]="'/'">Logout</button>
     <img class="avatar" [src]="userAvatarUrl" />
   </div>
 </header>

@@ -3,7 +3,9 @@
     <div class="post-header-profile">
       <img class="avatar" [src]="userAvatarUrl" />
       <div class="post-user-details">
-        <div class="post-username">{{ postInput?.author || "Anonymous" }}</div>
+        <div class="post-username">
+          {{ isMyPost() ? "You" : postInput?.author || "Anonymous" }}
+        </div>
         <div class="post-date-created">{{ postInput?.date | date }}</div>
       </div>
     </div>
@@ -41,17 +43,16 @@
     <div class="likes">
       <img src="/assets/images/heart.png" (click)="onLike()" />
       <div class="like-count">{{ postInput?.likes?.length || 0 }}</div>
-    </div>
-    <div class="comms">
-      <img
-        src="/assets/images/comms.png"
-        (click)="redirectToPost(postInput?.id)"
-      />
-      <div class="comms-count">{{ postInput?.commentCount || 0 }}</div>
+      <div class="comms">
+        <img
+          src="/assets/images/comms.png"
+          (click)="redirectToPost(postInput?.id)"
+        />
+        <div class="comms-count">{{ postInput?.commentCount || 0 }}</div>
+      </div>
     </div>
     <div class="shares">
       <img src="/assets/images/share.png" />
-      <div class="share-count">2</div>
     </div>
   </div>
 </div>

@@ -3,8 +3,8 @@
   padding: 15px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
-  border-radius: 5px; /* Added border-radius for smoother edges */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow for depth */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .comment .header {
@@ -15,8 +15,19 @@
   font-weight: bold;
 }
 
-.comment .header .username {
+.comment .header .user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.comment .header .user-profile img.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   margin-right: 10px;
+}
+
+.comment .header .username {
   color: #333;
 }
 
@@ -33,13 +44,13 @@
 .comment .header .actions img {
   margin-left: 10px;
   cursor: pointer;
-  width: 20px; /* Adjust width as needed */
-  height: 20px; /* Adjust height as needed */
-  transition: transform 0.2s; /* Smooth transition for hover effect */
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s;
 }
 
 .comment .header .actions img:hover {
-  transform: scale(1.1); /* Slightly increase size on hover */
+  transform: scale(1.1);
 }
 
 .comment .content {

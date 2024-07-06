@@ -3,7 +3,9 @@
     <app-post [postInput]="post"></app-post>
     <div class="comments">
       <input placeholder="Add a comment" [(ngModel)]="content" />
-      <button (click)="createComment()">Submit</button>
+      <button (click)="createComment()" (click)="refreshComments()">
+        Submit
+      </button>
       <ng-container *ngFor="let comment of comments">
         <app-comment
           [commentInput]="comment"

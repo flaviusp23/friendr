@@ -38,7 +38,10 @@ const usersController = {
         const username = req.body.username;
         console.log("\nReached FOLLOW user controller");
         console.log(usernameToBeFollowed);
-
+        if(usernameToBeFollowed === username){
+            res.status(400).json({ message: "You cannot follow yourself" });
+            return;
+        }
         if (!username) {
             res.status(400).json({ message: "Username is required" });
             return;

@@ -14,7 +14,8 @@
 .post-stats {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between; /* Align items and distribute space */
+  gap: 16px; /* Adjust the gap between items */
 }
 
 .likes,
@@ -22,9 +23,10 @@
 .shares {
   display: flex;
   align-items: center;
-  margin-left: 10px;
 }
-
+.comms{
+  margin-left:10px;
+}
 .likes img,
 .comms img,
 .shares img {
@@ -38,6 +40,7 @@
 .share-count {
   margin-left: 3px;
 }
+
 
 .post-header {
   display: flex;

@@ -9,6 +9,9 @@ import { first } from 'rxjs';
 })
 export class CommentComponent {
   username = localStorage.getItem('username');
+  userAvatarUrl =
+    'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+    
   @Input() commentInput: any;
   @Output() commentDeleted = new EventEmitter<void>();
 
