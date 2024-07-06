@@ -48,5 +48,8 @@ export class AppService {
   deleteComment(commentId:string){
     return this.http.delete(`http://localhost:3000/comments/${commentId}`)
   }
+  deletePost(postId: string): Observable<any>{
+    return this.http.delete(`http://localhost:3000/posts?id=${postId}`)
+  }
 
 }

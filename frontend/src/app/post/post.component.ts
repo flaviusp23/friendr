@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { first } from 'rxjs/operators';
+import { PostdetailComponent } from '../postdetail/postdetail.component';
 
 @Component({
   selector: 'app-post',
@@ -26,7 +27,9 @@ export class PostComponent {
     this.checkIfFollowing();
     this.getComments();
   }
-
+  isMyPost(): boolean {
+    return this.username === this.postInput.author;
+  }
   checkIfFollowing() {
     const author = this.postInput?.author || localStorage.getItem('author') || ''
     this.appService
@@ -93,4 +96,20 @@ export class PostComponent {
       }
     });
   }
+  deletePost(event: Event): void {
+    event.stopPropagation(); // Prevents click event from propagating
+    const postId = this.postInput.id || localStorage.getItem('postId') || '';
+    this.appService
+    .deletePost(postId)
+    .pipe(first())
+    .subscribe({
+      next: (response) =>{
+        console.log("Post Deleted")
+      },
+      error: (error) =>{
+        console.log(error)
+      }
+    })
+  }
+  
 }

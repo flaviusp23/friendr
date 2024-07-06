@@ -13,12 +13,30 @@
   </div>
   <div class="post-content" (click)="redirectToPost(postInput?.id)">
     <div class="post-body">
-      <div>
-        {{ postInput?.description }}
+      <div class="description-container">
+        <div>
+          {{ postInput?.description }}
+        </div>
+        <div class="actions">
+          <button class="edit-btn" *ngIf="isMyPost()">
+            <img src="/assets/images/edit.png" alt="Edit Post" />
+          </button>
+          <button
+            class="edit-btn"
+            *ngIf="isMyPost()"
+            (click)="deletePost($event)"
+          >
+            <img src="/assets/images/delete.png" alt="Delete Post" />
+          </button>
+        </div>
       </div>
-      <img src="/assets/images/post.png" />
+
+      <div class="image-container">
+        <img src="/assets/images/post.png" />
+      </div>
     </div>
   </div>
+
   <div class="post-stats">
     <div class="likes">
       <img src="/assets/images/heart.png" (click)="onLike()" />
@@ -36,5 +54,4 @@
       <div class="share-count">2</div>
     </div>
   </div>
-  <div class="post-footer"></div>
 </div>

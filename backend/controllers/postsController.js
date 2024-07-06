@@ -1,3 +1,4 @@
+const commentsServices = require("../services/commentsServices");
 const postsServices = require("../services/postServices");
 
 const postsController = {
@@ -55,6 +56,7 @@ const postsController = {
         const postId = req.query.id;
         console.log(postId);
         await postsServices.deletePosts(postId);
+        await commentsServices.deleteAllCommentsByPostId(postId);
         res.status(200).json({ message: "Post deleted" });
     }
 };

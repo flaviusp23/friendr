@@ -3,7 +3,10 @@
   flex-direction: column;
   padding: 10px;
   gap: 16px;
+
+  background-color: #fff; /* Example background color for visualization */
 }
+
 .post-content {
   cursor: pointer;
 }
@@ -11,7 +14,7 @@
 .post-stats {
   display: flex;
   align-items: center;
-  gap: 16px; /* Adjust as needed for spacing */
+  gap: 16px;
 }
 
 .likes,
@@ -33,7 +36,7 @@
 .like-count,
 .comms-count,
 .share-count {
-  margin-left: 3px; /* Adjust as needed for spacing */
+  margin-left: 3px;
 }
 
 .post-header {
@@ -50,6 +53,7 @@
 .post-header-profile img {
   width: 40px;
   height: 40px;
+  border-radius: 50%; /* Example border radius for avatar */
 }
 
 .following-btn,
@@ -68,12 +72,12 @@
 .following-btn {
   background: #163ac70f;
   border: 1px solid #163ac733;
-  color: #163ac7; /* Use the color variable or hex directly */
+  color: #163ac7;
 }
 
 .follow-btn {
-  background: #163ac7; /* Use the color variable or hex directly */
-  border: 1px solid #163ac7; /* Use the color variable or hex directly */
+  background: #163ac7;
+  border: 1px solid #163ac7;
   color: #fefefe;
 }
 
@@ -102,6 +106,36 @@
   color: #1d242999;
 }
 
-.post-footer {
+.description-container {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 8px; /* Adjust the gap between edit and delete buttons */
+}
+
+.edit-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.edit-btn img {
+  width: 20px;
+  height: 20px;
 }
