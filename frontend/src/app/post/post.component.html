@@ -6,7 +6,7 @@
         <div class="post-username">
           {{ isMyPost() ? "You" : postInput?.author || "Anonymous" }}
         </div>
-        <div class="post-date-created">{{ postInput?.date | date }}</div>
+        <div class="post-date-created">{{ getTimeAgo(postInput?.date) }}</div>
       </div>
     </div>
     <button class="following-btn" (click)="follow()">

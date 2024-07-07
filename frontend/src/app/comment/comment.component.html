@@ -4,7 +4,7 @@
       <img class="avatar" [src]="userAvatarUrl" alt="Profile Picture" />
       <span class="username">{{ commentInput.username }}</span>
     </div>
-    <span class="date">{{ commentInput.date | date }}</span>
+    <span class="date">{{ getTimeAgo(commentInput?.date) }}</span>
   </div>
   <div class="content">
     {{ commentInput.content }}

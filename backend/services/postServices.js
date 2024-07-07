@@ -11,7 +11,7 @@ const postsServices = {
         console.log("Reached POST post services");
         console.log(postObj);
         postObj.id = uuidv4();
-        postObj.date = new Date().toISOString()
+        postObj.date = new Date();
         const postToBeCreated = new postModel(postObj);
         postToBeCreated.save().then(() => console.log("Post created"))
     },

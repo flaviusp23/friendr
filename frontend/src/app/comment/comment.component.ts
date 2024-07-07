@@ -20,7 +20,30 @@ export class CommentComponent {
   isMyComment(): boolean {
     return this.username === this.commentInput.username;
   }
-
+  getTimeAgo(postDate: string | Date): string {
+    const currentDate = new Date();
+    const postDateObj = new Date(postDate);
+    
+    const timeDifference = currentDate.getTime() - postDateObj.getTime();
+    
+    const secondsAgo = Math.floor(timeDifference / 1000);
+    const minutesAgo = Math.floor(secondsAgo / 60);
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    const daysAgo = Math.floor(hoursAgo / 24);
+    
+    let timeAgo;
+    if (daysAgo > 0) {
+      timeAgo = daysAgo === 1 ? `${daysAgo} day ago` : `${daysAgo} days ago`;
+    } else if (hoursAgo > 0) {
+      timeAgo = hoursAgo === 1 ? `${hoursAgo} hour ago` : `${hoursAgo} hours ago`;
+    } else if (minutesAgo > 0) {
+      timeAgo = minutesAgo === 1 ? `${minutesAgo} minute ago` : `${minutesAgo} minutes ago`;
+    } else {
+      timeAgo = secondsAgo === 1 ? `${secondsAgo+1} second ago` : `${secondsAgo+1} seconds ago`;
+    }
+    
+    return timeAgo;
+  }
   deleteComment(): void {
     this.appService.deleteComment(this.commentInput.id)
       .pipe(first())
