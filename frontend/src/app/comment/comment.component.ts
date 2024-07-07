@@ -15,11 +15,15 @@ export class CommentComponent {
   @Input() commentInput: any;
   @Output() commentDeleted = new EventEmitter<void>();
 
+  isEditing = false;
+  editedContent: string = '';
+
   constructor(private appService: AppService) {}
 
   isMyComment(): boolean {
     return this.username === this.commentInput.username;
   }
+
   getTimeAgo(postDate: string | Date): string {
     const currentDate = new Date();
     const postDateObj = new Date(postDate);
@@ -44,17 +48,47 @@ export class CommentComponent {
     
     return timeAgo;
   }
+
   deleteComment(): void {
     this.appService.deleteComment(this.commentInput.id)
       .pipe(first())
       .subscribe({
         next: () => {
           console.log("Comment deleted");
-          this.commentDeleted.emit(); // Emit event when comment is deleted
+          this.commentDeleted.emit();
         },
         error: (error) => {
           console.log(error);
         }
       });
+  }
+
+  startEditing(): void {
+    this.isEditing = true;
+    this.editedContent = this.commentInput.content;
+  }
+
+  cancelEdit(): void {
+    this.isEditing = false;
+    this.editedContent = '';
+  }
+
+  saveEdit(): void {
+    if (this.editedContent.trim() !== '') {
+      this.appService
+        .updateComment(this.commentInput.id, this.editedContent)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            console.log("Comment updated");
+            this.commentInput.content = this.editedContent;
+            this.isEditing = false;
+            this.commentDeleted.emit();
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
+    }
   }
 }

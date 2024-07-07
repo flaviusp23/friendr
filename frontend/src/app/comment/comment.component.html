@@ -6,19 +6,25 @@
     </div>
     <span class="date">{{ getTimeAgo(commentInput?.date) }}</span>
   </div>
-  <div class="content">
+  <div class="content" *ngIf="!isEditing">
     {{ commentInput.content }}
+  </div>
+  <div class="content" *ngIf="isEditing">
+    <textarea [(ngModel)]="editedContent" rows="3"></textarea>
   </div>
   <div class="actions">
     <img
-      *ngIf="isMyComment()"
+      *ngIf="isMyComment() && !isEditing"
       src="/assets/images/edit.png"
       class="edit-icon"
       alt="Edit"
       title="Edit"
+      (click)="startEditing()"
     />
+    <button *ngIf="isEditing" (click)="saveEdit()">Save</button>
+    <button *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
     <img
-      *ngIf="isMyComment()"
+      *ngIf="isMyComment() && !isEditing"
       src="/assets/images/delete.png"
       class="delete-icon"
       alt="Delete"

@@ -32,6 +32,16 @@ const commentsServices = {
         console.log(postId)
         const response = await commentModel.deleteMany({post_id:postId})
         return response;
+    },
+    updateComment: async (commentId, content) => {
+        console.log("\nReached UPDATE comments services");
+        console.log(commentId, content);
+    
+        await commentModel.updateOne(
+            { id: commentId },
+            { $set: { date: new Date(), content: content } }
+        );
+        console.log("Comment updated");
     }
 }
 module.exports = commentsServices

@@ -45,6 +45,18 @@ const commentsController = {
         await commentsServices.deleteAllCommentsByPostId(postId);
         res.status(200).json({ message: "Comments by postId deleted" });
 
+    },
+    updateComment: async (req, res) => {
+        console.log("\nReached UPDATE comments controller")
+        const commentId = req.params.id;
+        const { content } = req.body;
+        console.log(commentId, content);
+        if (!content) {
+            res.status(400).json({ message: "Content is required for update" });
+            return;
+        }
+        await commentsServices.updateComment(commentId, content);     
+        res.status(200).json({ message: "Comment updated successfully" });
     }
 }
 

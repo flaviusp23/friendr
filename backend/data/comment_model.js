@@ -4,7 +4,7 @@ const commentModel = mongoose.model('Comment',{
     id: String,
     username:String,
     post_id:String,
-    date:String,
+    date:Date,
     content:String
 })
 
