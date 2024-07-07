@@ -85,7 +85,6 @@ export class PostComponent {
   }
 
   follow() {
-    const action = this.isFollowingUser ? 'unfollowUser' : 'followUser';
     const author = this.postInput?.author || localStorage.getItem('author') || ''
     this.appService
       .followUser(author, this.username)
@@ -94,6 +93,7 @@ export class PostComponent {
         next: (response) => {
           console.log(this.isFollowingUser ? "User unfollowed" : "User followed");
           this.isFollowingUser = !this.isFollowingUser;
+          this.postDeleted.emit();
         },
         error: (error) => {
           console.log(error);
