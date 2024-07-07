@@ -1,8 +1,7 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { first } from 'rxjs/operators';
-import { PostdetailComponent } from '../postdetail/postdetail.component';
 
 @Component({
   selector: 'app-post',
@@ -11,28 +10,32 @@ import { PostdetailComponent } from '../postdetail/postdetail.component';
 })
 export class PostComponent {
   username = localStorage.getItem('username') || '';
-  isFollowingUser: boolean = false; // Property to store following state
-  userAvatarUrl =
-    'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
-  comments = []
+  isFollowingUser: boolean = false;
+  userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+  comments = [];
+
+  isEditing = false;
+  editedDescription: string = '';
+
+  @Input() postInput: any;
+  @Output() postDeleted = new EventEmitter<void>();
 
   constructor(
     private router: Router,
     private appService: AppService
   ) {}
 
-  @Input() postInput: any;
-  @Output() postDeleted = new EventEmitter<void>();
-
   ngOnInit() {
     this.checkIfFollowing();
     this.getComments();
   }
+
   isMyPost(): boolean {
     return this.username === this.postInput.author;
   }
+
   checkIfFollowing() {
-    const author = this.postInput?.author || localStorage.getItem('author') || ''
+    const author = this.postInput?.author || localStorage.getItem('author') || '';
     this.appService
       .getUserByUsername(author)
       .pipe(first())
@@ -45,6 +48,7 @@ export class PostComponent {
         }
       });
   }
+
   getTimeAgo(postDate: string | Date): string {
     const currentDate = new Date();
     const postDateObj = new Date(postDate);
@@ -69,6 +73,7 @@ export class PostComponent {
     
     return timeAgo;
   }
+
   onLike() {
     this.appService
       .likePost(this.postInput.id, this.username)
@@ -85,7 +90,7 @@ export class PostComponent {
   }
 
   follow() {
-    const author = this.postInput?.author || localStorage.getItem('author') || ''
+    const author = this.postInput?.author || localStorage.getItem('author') || '';
     this.appService
       .followUser(author, this.username)
       .pipe(first())
@@ -120,6 +125,7 @@ export class PostComponent {
       }
     });
   }
+
   deletePost(event: Event): void {
     event.stopPropagation(); // Prevents click event from propagating
     const postId = this.postInput.id || localStorage.getItem('postId') || '';
@@ -127,14 +133,42 @@ export class PostComponent {
     .deletePost(postId)
     .pipe(first())
     .subscribe({
-      next: (response) =>{
-        console.log("Post Deleted")
+      next: (response) => {
+        console.log("Post Deleted");
         this.postDeleted.emit();
       },
-      error: (error) =>{
-        console.log(error)
+      error: (error) => {
+        console.log(error);
       }
-    })
+    });
   }
-  
+
+  startEditing(): void {
+    this.isEditing = true;
+    this.editedDescription = this.postInput.description;
+  }
+
+  saveEdit(): void {
+    if (this.editedDescription.trim() !== '') {
+      this.appService
+        .updatePost(this.postInput.id, this.editedDescription)
+        .pipe(first())
+        .subscribe({
+          next: () => {
+            console.log('Post updated');
+            this.postInput.description = this.editedDescription;
+            this.isEditing = false;
+            this.postDeleted.emit();
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
+    }
+  }
+
+  cancelEdit(): void {
+    this.isEditing = false;
+    this.editedDescription = '';
+  }
 }

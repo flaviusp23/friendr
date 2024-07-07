@@ -54,4 +54,7 @@ export class AppService {
   updateComment(commentId:string, content:string){
     return this.http.patch(`http://localhost:3000/comments/${commentId}`,{content})
   }
+  updatePost(postId:string, content:string){
+    return this.http.patch(`http://localhost:3000/posts/${postId}`,{content})
+  }
 }

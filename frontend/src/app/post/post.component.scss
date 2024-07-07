@@ -7,9 +7,6 @@
   background-color: #fff; /* Example background color for visualization */
 }
 
-.post-content {
-  cursor: pointer;
-}
 
 .post-stats {
   display: flex;
@@ -122,6 +119,7 @@
 .image-container img {
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .actions {

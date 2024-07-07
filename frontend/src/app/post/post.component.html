@@ -13,19 +13,40 @@
       {{ isFollowingUser ? "Unfollow" : "Follow" }}
     </button>
   </div>
-  <div class="post-content" (click)="redirectToPost(postInput?.id)">
+  <div class="post-content">
     <div class="post-body">
       <div class="description-container">
-        <div>
+        <div *ngIf="!isEditing">
           {{ postInput?.description }}
         </div>
+        <div *ngIf="isEditing">
+          <textarea [(ngModel)]="editedDescription" rows="3"></textarea>
+        </div>
         <div class="actions">
-          <button class="edit-btn" *ngIf="isMyPost()">
+          <button
+            class="edit-btn"
+            *ngIf="isMyPost() && !isEditing"
+            (click)="startEditing()"
+          >
             <img src="/assets/images/edit.png" alt="Edit Post" />
           </button>
           <button
             class="edit-btn"
-            *ngIf="isMyPost()"
+            *ngIf="isMyPost() && isEditing"
+            (click)="saveEdit()"
+          >
+            Save
+          </button>
+          <button
+            class="edit-btn"
+            *ngIf="isMyPost() && isEditing"
+            (click)="cancelEdit()"
+          >
+            Cancel
+          </button>
+          <button
+            class="edit-btn"
+            *ngIf="isMyPost() && !isEditing"
             (click)="deletePost($event)"
           >
             <img src="/assets/images/delete.png" alt="Delete Post" />
@@ -34,7 +55,11 @@
       </div>
 
       <div class="image-container">
-        <img src="/assets/images/post.png" />
+        <!-- Photo section, clicking here should redirect -->
+        <img
+          src="/assets/images/post.png"
+          (click)="redirectToPost(postInput?.id)"
+        />
       </div>
     </div>
   </div>
@@ -44,6 +69,7 @@
       <img src="/assets/images/heart.png" (click)="onLike()" />
       <div class="like-count">{{ postInput?.likes?.length || 0 }}</div>
       <div class="comms">
+        <!-- Comments section, clicking here should redirect -->
         <img
           src="/assets/images/comms.png"
           (click)="redirectToPost(postInput?.id)"
