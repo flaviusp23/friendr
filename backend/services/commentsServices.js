@@ -36,7 +36,6 @@ const commentsServices = {
     updateComment: async (commentId, content) => {
         console.log("\nReached UPDATE comments services");
         console.log(commentId, content);
-    
         await commentModel.updateOne(
             { id: commentId },
             { $set: { date: new Date(), content: content } }

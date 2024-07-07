@@ -41,6 +41,12 @@ const postsServices = {
             { $set: { date: new Date(), description: content } }
         );
         console.log("Post updated");
+    },
+    getPostsByUsername: async(username) =>{
+        console.log("Reached GET BY USERNAME post services")
+        console.log(username);
+        const response = await postModel.find({author:username},{})
+        return response
     }
 }
 

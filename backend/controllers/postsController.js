@@ -70,6 +70,13 @@ const postsController = {
         }
         await postsServices.updatePost(postId, content);     
         res.status(200).json({ message: "Post updated successfully" });
+    },
+    getPostsByAuthor:async(req, res) =>{
+        console.log("\nReached GET BY AUTHOR post controller")
+        const username = req.query.username;
+        console.log(username);
+        const postsObj = await postsServices.getPostsByUsername(username);
+        res.status(200).json(postsObj);
     }
 };
 

@@ -4,6 +4,7 @@ const postsController = require('../controllers/postsController');
 
 router.get('/:id',postsController.getPosts)
 router.get('/',postsController.getAllPosts)
+router.get('/',postsController.getPostsByAuthor)
 router.post('/',postsController.createPosts)
 router.delete('/',postsController.deletePosts)
 router.patch('/:id/likes',postsController.updatePostLikes)
