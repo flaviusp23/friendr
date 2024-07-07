@@ -15,6 +15,7 @@ export class CommentComponent {
   @Input() commentInput: any;
   @Output() commentDeleted = new EventEmitter<void>();
 
+
   isEditing = false;
   editedContent: string = '';
 
@@ -56,6 +57,7 @@ export class CommentComponent {
         next: () => {
           console.log("Comment deleted");
           this.commentDeleted.emit();
+   
         },
         error: (error) => {
           console.log(error);
@@ -84,6 +86,7 @@ export class CommentComponent {
             this.commentInput.content = this.editedContent;
             this.isEditing = false;
             this.commentDeleted.emit();
+       
           },
           error: (error) => {
             console.log(error);

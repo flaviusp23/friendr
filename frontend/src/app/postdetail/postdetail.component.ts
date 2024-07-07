@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AppService } from '../app.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-postdetail',
@@ -10,16 +10,19 @@ import { Router } from '@angular/router';
 })
 export class PostdetailComponent implements OnInit {
   username = localStorage.getItem('username') || '';
-  postId = localStorage.getItem('postId') || '';
+  postId : string = '';
   post: any = {}; // This will hold the post data
   comments: any = [];
   content: string = '';
 
-  constructor(private router: Router, private appService: AppService) {}
+  constructor(private route:ActivatedRoute, private router: Router, private appService: AppService) {}
 
   ngOnInit(): void {
-    this.getPost();
-    this.getComments();
+    this.route.paramMap.subscribe(params => {
+      this.postId = params.get('postId') || '';
+      this.getPost();
+      this.getComments();
+    });
   }
 
   getPost(): void {
@@ -38,8 +41,9 @@ export class PostdetailComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.refreshComments();
           this.content = ''; // Clear the input field
+          this.refreshComments();
+          this.getPost();
         },
         error: (error) => {
           console.log(error);
@@ -61,5 +65,8 @@ export class PostdetailComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+  refreshPost(): void {
+    this.getPost();
   }
 }

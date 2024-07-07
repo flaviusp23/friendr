@@ -174,4 +174,12 @@ export class PostComponent {
     this.isEditing = false;
     this.editedDescription = '';
   }
+  copyLink() {
+    const postUrl = `${window.location.origin}/posts/${this.postInput.id}`;
+    navigator.clipboard.writeText(postUrl).then(() => {
+      alert('Post link copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  }
 }
