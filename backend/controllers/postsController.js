@@ -58,6 +58,18 @@ const postsController = {
         await postsServices.deletePosts(postId);
         await commentsServices.deleteAllCommentsByPostId(postId);
         res.status(200).json({ message: "Post deleted" });
+    },
+    updatePost:async(req, res) =>{
+        console.log("\nReached UPDATE post controller")
+        const postId = req.params.id;
+        const { content } = req.body;
+        console.log(postId, content);
+        if (!content) {
+            res.status(400).json({ message: "Content is required for update" });
+            return;
+        }
+        await postsServices.updatePost(postId, content);     
+        res.status(200).json({ message: "Post updated successfully" });
     }
 };
 

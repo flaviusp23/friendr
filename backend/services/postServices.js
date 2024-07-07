@@ -32,6 +32,16 @@ const postsServices = {
     addPostLikes: async(postId,username) => {
         await postModel.updateOne({id:postId},{$push:{likes:username}});
     },
+    updatePost: async (postId, content) => {
+        console.log("Reached UPDATE post services");
+        console.log(postId, content);
+    
+        await postModel.updateOne(
+            { id: postId },
+            { $set: { date: new Date(), description: content } }
+        );
+        console.log("Post updated");
+    }
 }
 
 module.exports = postsServices;

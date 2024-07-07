@@ -7,5 +7,6 @@ router.get('/',postsController.getAllPosts)
 router.post('/',postsController.createPosts)
 router.delete('/',postsController.deletePosts)
 router.patch('/:id/likes',postsController.updatePostLikes)
+router.patch('/:id',postsController.updatePost)
 
 module.exports = router;
