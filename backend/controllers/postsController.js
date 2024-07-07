@@ -71,13 +71,14 @@ const postsController = {
         await postsServices.updatePost(postId, content);     
         res.status(200).json({ message: "Post updated successfully" });
     },
-    getPostsByAuthor:async(req, res) =>{
-        console.log("\nReached GET BY AUTHOR post controller")
-        const username = req.query.username;
+    getPostsByAuthor: async (req, res) => {
+        console.log("\nReached GET BY AUTHOR post controller");
+        const username = req.params.username; // Retrieve username from params, not query
         console.log(username);
         const postsObj = await postsServices.getPostsByUsername(username);
         res.status(200).json(postsObj);
     }
+    
 };
 
 module.exports = postsController;

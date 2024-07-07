@@ -2,8 +2,13 @@
   <div class="logo" [routerLink]="'homepage'">Homepage</div>
   <input type="text" placeholder="Search users..." class="search-input" />
   <div class="profile">
-    <div>Hello, {{ username }}</div>
+    <div>Hello, {{ firstName }}</div>
     <button class="logout-button" [routerLink]="'/'">Logout</button>
-    <img class="avatar" [src]="userAvatarUrl" />
+    <!-- Corrected routerLink binding -->
+    <img
+      class="avatar"
+      [routerLink]="['/users', username]"
+      [src]="userAvatarUrl"
+    />
   </div>
 </header>

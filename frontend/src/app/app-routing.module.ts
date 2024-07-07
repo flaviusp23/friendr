@@ -5,6 +5,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { PostdetailComponent } from './postdetail/postdetail.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path:'posts/:postId',component:PostdetailComponent,
+  },
+  {
+    path:'users/:username',component:ProfileComponent
   },
   {
     path:'**',redirectTo:''// o varianta ar trb sa punem o alta componenta notfound dar e mai bine asa cu redicrect

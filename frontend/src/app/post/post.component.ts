@@ -101,6 +101,7 @@ export class PostComponent {
           this.postDeleted.emit();
         },
         error: (error) => {
+          alert("Error. Please try again")
           console.log(error);
         }
       });

@@ -57,4 +57,7 @@ export class AppService {
   updatePost(postId:string, content:string){
     return this.http.patch(`http://localhost:3000/posts/${postId}`,{content})
   }
+  getPostsByAuthor(author: string){
+    return this.http.get(`http://localhost:3000/posts/author/${author}`)
+  }
 }

@@ -1,10 +1,13 @@
 <div class="post">
   <div class="post-header">
-    <div class="post-header-profile">
+    <div
+      class="post-header-profile"
+      [routerLink]="['/users', postInput?.author]"
+    >
       <img class="avatar" [src]="userAvatarUrl" />
       <div class="post-user-details">
         <div class="post-username">
-          {{ isMyPost() ? "You" : postInput?.author || "Anonymous" }}
+          {{ isMyPost() ? "You" : postInput?.author }}
         </div>
         <div class="post-date-created">{{ getTimeAgo(postInput?.date) }}</div>
       </div>

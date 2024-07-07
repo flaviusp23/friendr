@@ -1,0 +1,12 @@
+<p>{{ username }} 's Profile</p>
+<main>
+  <div class="posts-container">
+    <ng-container>
+      <app-post
+        *ngFor="let post of posts"
+        [postInput]="post"
+        (postDeleted)="refreshPosts()"
+      ></app-post>
+    </ng-container>
+  </div>
+</main>

@@ -1,8 +1,10 @@
 <div class="comment">
   <div class="header">
-    <div class="user-profile">
+    <div class="user-profile" [routerLink]="['/users', commentInput?.username]">
       <img class="avatar" [src]="userAvatarUrl" alt="Profile Picture" />
-      <span class="username">{{ commentInput.username }}</span>
+      <span class="username">{{
+        isMyComment() ? "You" : commentInput.username
+      }}</span>
     </div>
     <span class="date">{{ getTimeAgo(commentInput?.date) }}</span>
   </div>

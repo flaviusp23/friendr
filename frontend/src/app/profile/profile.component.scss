@@ -1,0 +1,38 @@
+main {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 1rem;
+  }
+  
+.posts-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 3rem;
+    align-items: center;
+    flex-direction: column;
+  }
+  p {
+    text-align: center;
+    font-size: 2rem; /* Larger font size for emphasis */
+    font-weight: bold; /* Bold font weight */
+    color: #333; /* Dark text color */
+    margin-bottom: 2rem; /* Increased bottom margin for separation */
+    position: relative; /* Enables positioning */
+  }
+  
+  p::after {
+    content: ""; /* Pseudo-element for decoration */
+    display: block;
+    width: 60px; /* Width of the decoration */
+    height: 3px; /* Height of the decoration */
+    background-color: #3498db; /* Accent color */
+    margin: 0.5rem auto; /* Centered horizontally with spacing */
+    border-radius: 2px; /* Rounded corners */
+  }
+  
