@@ -69,7 +69,16 @@
 
   <div class="post-stats">
     <div class="likes">
-      <img src="/assets/images/heart.png" (click)="onLike()" />
+      <img
+        src="/assets/images/heart.png"
+        *ngIf="!doILike()"
+        (click)="onLike()"
+      />
+      <img
+        src="/assets/images/filled.png"
+        *ngIf="doILike()"
+        (click)="onLike()"
+      />
       <div class="like-count">{{ postInput?.likes?.length || 0 }}</div>
       <div class="comms">
         <!-- Comments section, clicking here should redirect -->
