@@ -7,6 +7,7 @@ const userModel = mongoose.model('User',
         lastName: String,
         username: String,
         birthYear: Number,
+        password: String,
         followers: [String] 
     });
 

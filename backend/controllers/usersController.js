@@ -18,6 +18,7 @@ const usersController = {
         console.log(userToBeCreated);
         if (!userToBeCreated ||
             !userToBeCreated.firstName ||
+            !userToBeCreated.password ||
             !userToBeCreated.lastName ||
             !userToBeCreated.username) {
             res.status(400).json({ message: "Invalid user object" });
@@ -59,6 +60,21 @@ const usersController = {
         }
         const updatedUserObj = await usersServices.getUserByUsername(usernameToBeFollowed);
         res.status(200).json(updatedUserObj);
+    },
+    login: async (req, res) => {
+        console.log("\nReached LOGIN user controller");
+        const { username, password } = req.body;
+        if (!username || !password) {
+            res.status(400).json({ message: "Username and password are required" });
+            return;
+        }
+        try {
+            const token = await usersServices.loginUser(username, password);
+            res.cookie('token', token, { httpOnly: true });
+            res.status(200).json({ message: "Login successful" });
+        } catch (error) {
+            res.status(401).json({ message: error.message });
+        }
     }
 };
 

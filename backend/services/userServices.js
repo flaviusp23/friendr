@@ -1,22 +1,26 @@
 const userModel = require("../data/user.model");
 const {v4:uuidv4} = require('uuid')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const usersServices = {
     getUserById: async (userId) => {
         console.log("Reached GET user services");
         console.log(userId)
-        const response = await userModel.findOne({id:userId},{})
+        const response = await userModel.findOne({id:userId},{password : 0})
         return response;
     },
     getUserByUsername: async (username) => {
         console.log("Reached GET user services");
         console.log(username)
-        const response = await userModel.findOne({username:username})
+        const response = await userModel.findOne({username:username},{password : 0})
         return response;
     },
-    createUsers: (userObj) => {
+    createUsers: async (userObj) => {
         console.log("Reached POST user services");
         console.log(userObj);
         userObj.id = uuidv4();
+        userObj.password = await bcrypt.hash(userObj.password, 10);
         const userToBeCreated = new userModel(userObj);
         userToBeCreated.save().then(() => console.log('User created'))
     },
@@ -37,6 +41,20 @@ const usersServices = {
         console.log(usernameToBeFollowed,username)
         await userModel.updateOne({username:usernameToBeFollowed},{$push:{followers:username}});
     },
+    loginUser: async (username, password) => {
+        console.log("Reached LOGIN user services");
+        const userObj = await userModel.findOne({ username: username });
+        if (!userObj) {
+            throw new Error("Invalid username or password");
+        }
+        const isPasswordValid = await bcrypt.compare(password, userObj.password);
+        if (!isPasswordValid) {
+            throw new Error("Invalid username or password");
+        }
+        const token = jwt.sign({ id: userObj.id, username: userObj.username }, 'kaskavele', { expiresIn: '1h' });
+        return token
+    }
+    
 }
 
 module.exports = usersServices;
