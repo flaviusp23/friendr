@@ -16,7 +16,7 @@ export class RegisterComponent {
   confirmpassword: string = '';
   errorMessage: string = '';
 
-  constructor(private router:Router, private appService: AppService) {}
+  constructor(private router: Router, private appService: AppService) {}
 
   registerUser(): void {
     this.errorMessage = '';
@@ -29,24 +29,35 @@ export class RegisterComponent {
       this.errorMessage = 'Password must be at least 6 characters long';
       return;
     }
-    
     if (this.password !== this.confirmpassword) {
       this.errorMessage = 'Passwords do not match';
       return;
     }
 
-
-    this.appService.createUser(
-      this.firstname,
-      this.lastname,
-      this.username,
-      this.password
-    ).subscribe({
-      next: (response) => {
-        this.router.navigate(['login']);
+    // Check if username already exists
+    this.appService.getUserByUsername(this.username).subscribe({
+      next: (user) => {
+        if (user) {
+          this.errorMessage = 'Username already exists. Please choose a different username.';
+        } else {
+          // Username is available, proceed with registration
+          this.appService.createUser(
+            this.firstname,
+            this.lastname,
+            this.username,
+            this.password
+          ).subscribe({
+            next: (response) => {
+              this.router.navigate(['login']);
+            },
+            error: (error) => {
+              this.errorMessage = "Registration failed. Please try again.";
+            }
+          });
+        }
       },
-      error:(error) => {
-        this.errorMessage = "Invalid username or password";
+      error: (error) => {
+        console.log(error)
       }
     });
   }
