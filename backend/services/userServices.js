@@ -51,7 +51,7 @@ const usersServices = {
         if (!isPasswordValid) {
             throw new Error("Invalid username or password");
         }
-        const token = jwt.sign({ id: userObj.id, username: userObj.username, firstName : userObj.firstName, lastName : userObj.lastName }, 'kaskavele', { expiresIn: '1h' });
+        const token = jwt.sign({ id: userObj.id, username: userObj.username, firstName : userObj.firstName, lastName : userObj.lastName }, process.env.JWT_SECRET, { expiresIn: '1h' });
         return token
     }
     
