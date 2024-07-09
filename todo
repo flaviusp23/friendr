@@ -13,4 +13,5 @@ DONE sa se stie cand am dat like( sa am o inima umpluta)
 DONE share fara nr de shareuri,doar sa iti copieze linkul
 sign in/log in
 sa nu existe deja username cand creezi un cont
+sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 optional poti pune imagini la profil/postari

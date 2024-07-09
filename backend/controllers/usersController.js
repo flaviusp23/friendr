@@ -70,10 +70,13 @@ const usersController = {
         }
         try {
             const token = await usersServices.loginUser(username, password);
-            res.cookie('token', token, { httpOnly: true });
-            res.status(200).json({ message: "Login successful" });
+            res.cookie('token', token, {
+                httpOnly: true,
+            });
+            res.status(200).json({ message: "Login successful" , token: token});
         } catch (error) {
-            res.status(401).json({ message: error.message });
+            res.clearCookie("token")
+            res.status(401).json({ message: "Invalid username or password" });
         }
     }
 };

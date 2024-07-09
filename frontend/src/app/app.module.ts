@@ -13,6 +13,7 @@ import { CreatepostComponent } from './createpost/createpost.component';
 import { PostdetailComponent } from './postdetail/postdetail.component';
 import { CommentComponent } from './comment/comment.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProfileComponent } from './profile/profile.component';
     CreatepostComponent,
     PostdetailComponent,
     CommentComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

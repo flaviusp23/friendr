@@ -10,6 +10,7 @@ import { first } from 'rxjs';
 })
 export class LoginComponent {
   username: string = ''; // sau aceeasi chestie cu username! : string
+  password: string = '';
   loading = false;
   constructor(private router: Router, private appService:AppService){
     const username = localStorage.getItem('username');// ngOnInit se apeleaza dupa constructor
@@ -20,21 +21,19 @@ export class LoginComponent {
     this.loading = true;
     // const subscription = this.appService
     this.appService
-    .getUserByUsername(this.username)
+    .login(this.username,this.password)
     .pipe(first())
     .subscribe({
       next: (response) => {
         this.loading = false;
         localStorage.setItem('username',this.username);
-        localStorage.setItem('firstName',response?.firstName);
-        localStorage.setItem('lastName',response?.lastName);
         this.router.navigate(['homepage']);
       },
       error:(error) => {
         this.loading = false;
-        alert('User not found')
+        alert("Invalid username or password")
       }
     });
-    // subscription.unsubscribe();// asta cu const subscription si unsubscribe e o varianta echivalenta cu .pipe(). Ori una ori alta
+    // subscription.unsubscribe();// asta cu const subscription si unsubscribe e o varianta echivalenta cu .pipe(first()). Ori una ori alta
   }
 }

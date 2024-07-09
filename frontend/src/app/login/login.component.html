@@ -3,14 +3,27 @@
     <h1>Welcome to Friendr</h1>
     <div>Sign in to your account</div>
     <br />
-    <input
-      class="input"
-      type="text"
-      placeholder=""
-      data-placeholder="Enter your username"
-      [(ngModel)]="username"
-      required
-    />
+    <span
+      >Username:
+      <input
+        class="input"
+        type="text"
+        placeholder=""
+        data-placeholder="Enter your username"
+        [(ngModel)]="username"
+        required
+    /></span>
+    <br />
+    <span
+      >Password:
+      <input
+        class="input"
+        type="text"
+        placeholder=""
+        data-placeholder="Enter your password"
+        [(ngModel)]="password"
+        required
+    /></span>
     <br />
     <button class="sign-in-btn" (click)="signIn()" [disabled]="loading">
       Sign in

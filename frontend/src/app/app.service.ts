@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,57 +7,66 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getUserByUsername(username : string): Observable<any>{
-    return this.http.get(`http://localhost:3000/users/${username}`);
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  getUserByUsername(username: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/users/${username}`, { withCredentials: true });
   }
-  getPostById(postId : string):Observable<any>{
-    return this.http.get(`http://localhost:3000/posts/${postId}`)
+
+  getPostById(postId: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/posts/${postId}`, { withCredentials: true });
   }
-  getPosts(): Observable<any>{
-    return this.http.get('http://localhost:3000/posts/')
+
+  getPosts(): Observable<any> {
+    return this.http.get('http://localhost:3000/posts/', { withCredentials: true });
   }
-  getComments(postId: string): Observable<any>{
-    return this.http.get(`http://localhost:3000/comments?postId=${postId}`)
+
+  getComments(postId: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/comments?postId=${postId}`, { withCredentials: true });
   }
+
   likePost(postId: string, username: string): Observable<any> {
-    return this.http.patch(`http://localhost:3000/posts/${postId}/likes`, { username });
+    return this.http.patch(`http://localhost:3000/posts/${postId}/likes`, { username }, { withCredentials: true });
   }
+
   followUser(usernameToBeFollowed: string, username: string): Observable<any> {
-    return this.http.patch(`http://localhost:3000/users/${usernameToBeFollowed}/follow`, { username });
+    return this.http.patch(`http://localhost:3000/users/${usernameToBeFollowed}/follow`, { username }, { withCredentials: true });
   }
-  createPost(author: string, title: string, description: string){
-    const body = {
-      author: author,
-      title: title,
-      description: description
-    };
-    console.log(body)
-    return this.http.post('http://localhost:3000/posts', body);
+
+  createPost(author: string, title: string, description: string): Observable<any> {
+    const body = { author, title, description };
+    return this.http.post('http://localhost:3000/posts', body, { headers: this.headers, withCredentials: true });
   }
-  createComment(username: string, postId: string, content: string){
-    const body = {
-      username: username,
-      post_id: postId,
-      content: content
-    };
-    console.log(body)
-    return this.http.post('http://localhost:3000/comments', body);
+
+  createComment(username: string, postId: string, content: string): Observable<any> {
+    const body = { username, post_id: postId, content };
+    return this.http.post('http://localhost:3000/comments', body, { headers: this.headers, withCredentials: true });
   }
-  deleteComment(commentId:string){
-    return this.http.delete(`http://localhost:3000/comments/${commentId}`)
+
+  deleteComment(commentId: string): Observable<any> {
+    return this.http.delete(`http://localhost:3000/comments/${commentId}`, { withCredentials: true });
   }
-  deletePost(postId: string): Observable<any>{
-    return this.http.delete(`http://localhost:3000/posts?id=${postId}`)
+
+  deletePost(postId: string): Observable<any> {
+    return this.http.delete(`http://localhost:3000/posts?id=${postId}`, { withCredentials: true });
   }
-  updateComment(commentId:string, content:string){
-    return this.http.patch(`http://localhost:3000/comments/${commentId}`,{content})
+
+  updateComment(commentId: string, content: string): Observable<any> {
+    return this.http.patch(`http://localhost:3000/comments/${commentId}`, { content }, { withCredentials: true });
   }
-  updatePost(postId:string, content:string){
-    return this.http.patch(`http://localhost:3000/posts/${postId}`,{content})
+
+  updatePost(postId: string, content: string): Observable<any> {
+    return this.http.patch(`http://localhost:3000/posts/${postId}`, { content }, { withCredentials: true });
   }
-  getPostsByAuthor(author: string){
-    return this.http.get(`http://localhost:3000/posts/author/${author}`)
+
+  getPostsByAuthor(author: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/posts/author/${author}`, { withCredentials: true });
+  }
+
+  login(username: string, password: string): Observable<any> {
+    const body = { username, password };
+    return this.http.post('http://localhost:3000/users/login', body, { headers: this.headers, withCredentials: true });
   }
 }
