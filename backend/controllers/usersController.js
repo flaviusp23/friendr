@@ -79,6 +79,13 @@ const usersController = {
             res.clearCookie("token")
             res.status(401).json({ message: "Invalid username or password" });
         }
+    },
+    searchUsers: async(req,res) =>{
+        console.log("\nReached SEARCH user controller");
+        const username = req.params.username;
+        console.log(username);
+        const userObjs = await usersServices.searchUsers(username);
+        return res.status(400).json(userObjs)
     }
 };
 

@@ -53,6 +53,13 @@ const usersServices = {
         }
         const token = jwt.sign({ id: userObj.id, username: userObj.username, firstName : userObj.firstName, lastName : userObj.lastName }, process.env.JWT_SECRET, { expiresIn: '1h' });
         return token
+    },
+    searchUsers: async (username) => {
+        console.log("Reached SEARCH user services");
+        console.log(username);
+        const regex = new RegExp('^' + username, 'i'); // Case-insensitive search
+        const userObjs = await userModel.find({ username: { $regex: regex } }, { password: 0 });
+        return userObjs;
     }
     
 }

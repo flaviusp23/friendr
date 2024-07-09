@@ -14,7 +14,7 @@ DONE share fara nr de shareuri,doar sa iti copieze linkul
 DONE sign in/log in
 DONE sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 DONE sa nu existe deja username cand creezi un cont
-sa rezolv cu chestiile din localstorage inutile
+DONE sa rezolv cu chestiile din localstorage inutile
 sa rezolv bara de cautari
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii
