@@ -12,7 +12,10 @@ DONE pagina separata pt fiecare user cu postarile lui
 DONE sa se stie cand am dat like( sa am o inima umpluta)
 DONE share fara nr de shareuri,doar sa iti copieze linkul
 DONE sign in/log in
+DONE sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 sa nu existe deja username cand creezi un cont
-sa rezolv cu chestiile din localstorage inutile 
-sa imi ascund cheile secrete cu un env(jwt si mongoDB)
+sa rezolv cu chestiile din localstorage inutile
+sa rezolv bara de cautari
+optional postarile sa fie pe mai multe pagini
+optional sortarea postarile dupa criterii
 optional poti pune imagini la profil/postari
