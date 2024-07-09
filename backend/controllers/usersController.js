@@ -80,12 +80,17 @@ const usersController = {
             res.status(401).json({ message: "Invalid username or password" });
         }
     },
-    searchUsers: async(req,res) =>{
+    searchUsers: async (req, res) => {
         console.log("\nReached SEARCH user controller");
-        const username = req.params.username;
+        const username = req.params.username; // Extract username from route params
         console.log(username);
-        const userObjs = await usersServices.searchUsers(username);
-        return res.status(400).json(userObjs)
+        try {
+            const userObjs = await usersServices.searchUsers(username);
+            return res.status(200).json(userObjs); // Return 200 OK with search results
+        } catch (error) {
+            console.error('Error searching users:', error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
     }
 };
 

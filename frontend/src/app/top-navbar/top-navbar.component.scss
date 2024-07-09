@@ -1,63 +1,79 @@
-$red: #e1251b;
-
 header {
-  background-color: $red;
-  height: 50px;
-  color: #fefefe;
   display: flex;
   align-items: center;
-  padding: 16px 32px;
   justify-content: space-between;
-}
+  padding: 1rem;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-.logo {
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-.search-input {
-  margin-left: 15px;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  width: 200px;
-}
+  .search-input {
+    width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
 
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-grow: 1;
-  justify-content: flex-end;
-}
+  .search-dropdown {
+    position: absolute;
+    top:8.8%;
+    left: 50%;
+    transform: translateX(-67%);
+    width: 300px;
+    padding: 0.5rem;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 
-.profile div {
-  display: inline;
-}
+    app-userprofile {
+      display: block;
+      padding: 0.5rem;
+      border-bottom: 1px solid #ced4da;
 
-.avatar {
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
+      &:last-child {
+        border-bottom: none;
+      }
 
-.logout-button {
-  padding: 8px 16px;
-  background-color: transparent;
-  color: #fefefe;
-  border: 1px solid #fefefe;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s, color 0.3s;
-}
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+  }
 
-.logout-button:hover {
-  background-color: #fefefe;
-  color: $red;
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .logout-button {
+      padding: 0.5rem 1rem;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #c82333;
+      }
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
 }

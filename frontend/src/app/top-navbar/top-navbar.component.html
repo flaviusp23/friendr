@@ -1,10 +1,23 @@
 <header>
   <div class="logo" [routerLink]="'homepage'">Homepage</div>
-  <input type="text" placeholder="Search users..." class="search-input" />
+  <input
+    type="text"
+    placeholder="Search users..."
+    class="search-input"
+    (input)="searchUsers($event)"
+    (focus)="showDropdown = true"
+    (blur)="hideDropdown()"
+  />
+  <div class="search-dropdown" *ngIf="showDropdown && searchResults.length">
+    <ul>
+      <li *ngFor="let user of searchResults" (click)="onSelectUser(user)">
+        {{ user.username }}
+      </li>
+    </ul>
+  </div>
   <div class="profile">
     <div>Hello, {{ firstName }}</div>
     <button class="logout-button" [routerLink]="'/login'">Logout</button>
-    <!-- Corrected routerLink binding -->
     <img
       class="avatar"
       [routerLink]="['/users', username]"

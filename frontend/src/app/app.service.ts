@@ -75,4 +75,8 @@ export class AppService {
     const body = { username, password };
     return this.http.post('http://localhost:3000/users/login', body, { headers: this.headers, withCredentials: true });
   }
+
+  searchUser(username: string): Observable<any> {
+    return this.http.get(`http://localhost:3000/users/${username}/search`, { withCredentials: true });
+  }
 }
