@@ -27,6 +27,8 @@ export class LoginComponent {
       next: (response) => {
         this.loading = false;
         localStorage.setItem('username',this.username);
+        localStorage.setItem('firstName',response.firstName);
+        localStorage.setItem('lastName',response.lastName);
         this.router.navigate(['homepage']);
       },
       error:(error) => {

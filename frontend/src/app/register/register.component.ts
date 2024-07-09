@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-register',
@@ -34,30 +33,38 @@ export class RegisterComponent {
       return;
     }
 
-    // Check if username already exists
     this.appService.getUserByUsername(this.username).subscribe({
       next: (user) => {
         if (user) {
           this.errorMessage = 'Username already exists. Please choose a different username.';
         } else {
-          // Username is available, proceed with registration
-          this.appService.createUser(
-            this.firstname,
-            this.lastname,
-            this.username,
-            this.password
-          ).subscribe({
-            next: (response) => {
-              this.router.navigate(['login']);
-            },
-            error: (error) => {
-              this.errorMessage = "Registration failed. Please try again.";
-            }
-          });
+          this.createUser();
         }
       },
       error: (error) => {
-        console.log(error)
+        if (error.status === 404) {
+          // Username does not exist, proceed with registration
+          this.createUser();
+        } else {
+          console.error('Error checking username:', error);
+          this.errorMessage = "Failed to check username. Please try again.";
+        }
+      }
+    });
+  }
+
+  private createUser(): void {
+    this.appService.createUser(
+      this.firstname,
+      this.lastname,
+      this.username,
+      this.password
+    ).subscribe({
+      next: (response) => {
+        this.router.navigate(['login']);
+      },
+      error: (error) => {
+        this.errorMessage = "Registration failed. Please try again.";
       }
     });
   }
