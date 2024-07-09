@@ -9,11 +9,10 @@
     (blur)="hideDropdown()"
   />
   <div class="search-dropdown" *ngIf="showDropdown && searchResults.length">
-    <ul>
-      <li *ngFor="let user of searchResults" (click)="onSelectUser(user)">
-        {{ user.username }}
-      </li>
-    </ul>
+    <app-userprofile
+      *ngFor="let user of searchResults"
+      [user]="user"
+    ></app-userprofile>
   </div>
   <div class="profile">
     <div>Hello, {{ firstName }}</div>

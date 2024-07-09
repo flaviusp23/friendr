@@ -15,7 +15,7 @@ DONE sign in/log in
 DONE sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 DONE sa nu existe deja username cand creezi un cont
 DONE sa rezolv cu chestiile din localstorage inutile
-sa rezolv bara de cautari
+DONE sa rezolv bara de cautari
 sa poti sa stergi comentariile de la postarea ta
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii

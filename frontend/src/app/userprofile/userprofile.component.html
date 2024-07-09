@@ -1,5 +1,5 @@
-<div class="user-profile">
-  <img [src]="user.avatarUrl" alt="{{ user.username }}'s avatar" />
+<div class="user-profile" [routerLink]="['/users', user.username]">
+  <img [src]="userAvatarUrl" />
   <div class="user-info">
     <p>{{ user.username }}</p>
   </div>
