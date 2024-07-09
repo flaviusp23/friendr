@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isLoggedIn(){
-    return document.location.pathname !== '/';
+  // Method to check if the user is not on login, register, or home page
+  shouldShowNavbar(): boolean {
+    const path = document.location.pathname;
+    return !(path === '/login' || path === '/register' || path === '/');
   }
-
 }

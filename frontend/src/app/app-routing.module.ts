@@ -1,30 +1,47 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { CreatepostComponent } from './createpost/createpost.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RegisterComponent } from './register/register.component';
 import { PostdetailComponent } from './postdetail/postdetail.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path:'',component:LoginComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path:'createPost',component:CreatepostComponent
+    path: 'createPost',
+    component: CreatepostComponent
   },
   {
-    path:'homepage',component:HomepageComponent,
+    path: 'homepage',
+    component: HomepageComponent,
   },
   {
-    path:'posts/:postId',component:PostdetailComponent,
+    path: 'register',
+    component: RegisterComponent,
   },
   {
-    path:'users/:username',component:ProfileComponent
+    path: 'posts/:postId',
+    component: PostdetailComponent,
   },
   {
-    path:'**',redirectTo:''// o varianta ar trb sa punem o alta componenta notfound dar e mai bine asa cu redicrect
+    path: 'users/:username',
+    component: ProfileComponent
+  },
+  // Redirect from root path '/' to '/login'
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  },
+  // Handle all other routes with a wildcard route to redirect to '/login'
+  {
+    path: '**',
+    redirectTo: '/login'
   }
 ];
 

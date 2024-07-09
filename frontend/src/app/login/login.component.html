@@ -14,19 +14,23 @@
         required
     /></span>
     <br />
-    <span
-      >Password:
+    <span>
+      Password:
       <input
         class="input"
-        type="text"
+        type="password"
         placeholder=""
-        data-placeholder="Enter your password"
+        data-placeholder="password"
         [(ngModel)]="password"
         required
-    /></span>
+      />
+    </span>
     <br />
     <button class="sign-in-btn" (click)="signIn()" [disabled]="loading">
       Sign in
     </button>
+    <div class="go-back">
+      Create a new account <b routerLink="/register">here</b>
+    </div>
   </div>
 </div>

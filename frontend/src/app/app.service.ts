@@ -14,6 +14,12 @@ export class AppService {
   getUserByUsername(username: string): Observable<any> {
     return this.http.get(`http://localhost:3000/users/${username}`, { withCredentials: true });
   }
+  
+  createUser(firstName: string, lastName: string, username: string, password: string): Observable<any> {
+    const body = { firstName, lastName, username, password};
+    console.log(body);
+    return this.http.post('http://localhost:3000/users/register', body, { headers: this.headers, withCredentials: true });
+  }
 
   getPostById(postId: string): Observable<any> {
     return this.http.get(`http://localhost:3000/posts/${postId}`, { withCredentials: true });
