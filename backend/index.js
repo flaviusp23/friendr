@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT
+const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(express.json());
@@ -28,7 +28,7 @@ mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(process.env.PORT || 3000, () => {
+    app.listen(port, () => {
       console.log(`Example app listening on port ${port}`);
     });
   })
