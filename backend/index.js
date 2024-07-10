@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: 'http://localhost:4200',
     credentials: true,
   })
 );
@@ -25,7 +25,7 @@ app.use('/comments', require('./routers/comment_route'));
 app.use('/auth', require('./middleware/auth'));
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect('mongodb+srv://flaviuspaltin599:1234@cluster0.ae1qz3q.mongodb.net/friendr?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(port, () => {
