@@ -35,7 +35,7 @@ export class PostComponent {
     return this.username === this.postInput.author;
   }
   doILike(): boolean{
-    return this.postInput.likes.includes(this.username);
+    return this.postInput.likes.includes(this.username) || false;
   }
   checkIfFollowing() {
     const author = this.postInput?.author || localStorage.getItem('author') || '';
