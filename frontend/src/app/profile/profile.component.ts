@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
       this.refreshPosts(); // Fetch posts when username changes
     });
   }
-
+  isMyOwnPage(){
+    return this.username === localStorage.getItem('username');
+  }
   refreshPosts(): void {
     if (this.username) { // Ensure username is not empty
       this.appService
@@ -36,4 +38,7 @@ export class ProfileComponent implements OnInit {
         });
     }
   }
+  // onFileChanged(event) {
+  //   const file = event.target.files[0]
+  // }
 }

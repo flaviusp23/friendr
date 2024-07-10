@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { first } from 'rxjs';
-import { AppService } from '../app.service'; // Adjust the import path based on your actual service location
+import { AppService } from '../app.service'; 
 
 @Component({
   selector: 'app-top-navbar',
@@ -8,9 +8,9 @@ import { AppService } from '../app.service'; // Adjust the import path based on 
   styleUrls: ['./top-navbar.component.scss']
 })
 export class TopNavbarComponent {
-  firstName = localStorage.getItem('firstName'); // Replace with your actual logic
-  username = localStorage.getItem('username'); // Replace with your actual logic
-  userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+  firstName = localStorage.getItem('firstName'); 
+  username = localStorage.getItem('username'); 
+  userAvatarUrl = localStorage.getItem('pictureUrl'); 
   showDropdown = false;
   searchResults: any[] = [];
 
@@ -36,17 +36,12 @@ export class TopNavbarComponent {
         });
     } else {
       this.searchResults = [];
-      this.showDropdown = false; // Hide dropdown when search input is empty
+      this.showDropdown = false;
     }
   }
   hideDropdown() {
     setTimeout(() => {
       this.showDropdown = false;
-    }, 200); // Delay to allow click event to register
-  }
-
-  onSelectUser(user: any) {
-    // Navigate to the user's profile or handle user selection
-    console.log('Selected user:', user);
+    }, 200); 
   }
 }

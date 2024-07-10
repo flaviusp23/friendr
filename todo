@@ -16,7 +16,9 @@ DONE sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 DONE sa nu existe deja username cand creezi un cont
 DONE sa rezolv cu chestiile din localstorage inutile
 DONE sa rezolv bara de cautari
-sa poti sa stergi comentariile de la postarea ta
+poti pune imagine la profil
+poti schimba imaginea de la profil
+poti pune imagini la postari
+poti schima imaginea de la postare
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii
-optional poti pune imagini la profil/postari

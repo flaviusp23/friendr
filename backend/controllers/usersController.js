@@ -74,7 +74,7 @@ const usersController = {
                 httpOnly: true,
             });
             const userObj = await usersServices.getUserByUsername(username);
-            res.status(200).json({ message: "Login successful" , token: token, firstName: userObj.firstName, lastName: userObj.lastName});
+            res.status(200).json({ message: "Login successful" , token: token, firstName: userObj.firstName, lastName: userObj.lastName, pictureUrl: userObj.pictureUrl});
         } catch (error) {
             res.clearCookie("token")
             res.status(401).json({ message: "Invalid username or password" });

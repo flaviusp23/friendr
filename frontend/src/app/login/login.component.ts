@@ -29,6 +29,7 @@ export class LoginComponent {
         localStorage.setItem('username',this.username);
         localStorage.setItem('firstName',response.firstName);
         localStorage.setItem('lastName',response.lastName);
+        localStorage.setItem('pictureUrl',response.pictureUrl)
         this.router.navigate(['homepage']);
       },
       error:(error) => {

@@ -8,7 +8,8 @@ const userModel = mongoose.model('User',
         username: String,
         birthYear: Number,
         password: String,
-        followers: [String] 
+        followers: [String],
+        pictureUrl: String
     });
 
 module.exports = userModel;

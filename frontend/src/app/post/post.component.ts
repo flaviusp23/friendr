@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
 export class PostComponent {
   username = localStorage.getItem('username') || '';
   isFollowingUser: boolean = false;
-  userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+  userAvatarUrl = '';
   comments = [];
 
   isEditing = false;
@@ -26,6 +26,7 @@ export class PostComponent {
   ) {}
 
   ngOnInit() {
+
     this.checkIfFollowing();
     this.getComments();
   }
@@ -44,6 +45,7 @@ export class PostComponent {
       .subscribe({
         next: (response) => {
           this.isFollowingUser = response.followers.includes(this.username);
+          this.userAvatarUrl = response.pictureUrl;
         },
         error: (error) => {
           console.log(error);

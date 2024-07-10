@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { AppService } from '../app.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-userprofile',
@@ -7,5 +9,21 @@ import { Component, Input } from '@angular/core';
 })
 export class UserprofileComponent {
   @Input() user: any;
-  userAvatarUrl = 'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+  userAvatarUrl = '';
+
+  constructor(private appService : AppService){}
+
+  ngOnInit(){
+    this.appService
+      .getUserByUsername(this.user.username)
+      .pipe(first())
+      .subscribe({
+        next: (response) => {
+          this.userAvatarUrl = response.pictureUrl;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+  }
 }

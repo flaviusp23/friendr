@@ -9,8 +9,7 @@ import { first } from 'rxjs';
 })
 export class CommentComponent {
   username = localStorage.getItem('username');
-  userAvatarUrl =
-    'https://aui.atlassian.com/aui/9.1/docs/images/avatar-person.svg';
+  userAvatarUrl = '';
     
   @Input() commentInput: any;
   @Output() commentDeleted = new EventEmitter<void>();
@@ -19,8 +18,21 @@ export class CommentComponent {
   isEditing = false;
   editedContent: string = '';
 
-  constructor(private appService: AppService) {}
-
+  constructor(private appService: AppService) {
+  }
+  ngOnInit(){
+    this.appService
+      .getUserByUsername(this.commentInput.username)
+      .pipe(first())
+      .subscribe({
+        next: (response) => {
+          this.userAvatarUrl = response.pictureUrl;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+  }
   isMyComment(): boolean {
     return this.username === this.commentInput.username;
   }

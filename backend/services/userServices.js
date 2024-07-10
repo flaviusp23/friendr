@@ -20,6 +20,7 @@ const usersServices = {
         console.log("Reached POST user services");
         console.log(userObj);
         userObj.id = uuidv4();
+        userObj.pictureUrl = 'https://headshots-inc.com/wp-content/uploads/2021/01/FINAL-Blog-Images.jpg'
         userObj.password = await bcrypt.hash(userObj.password, 10);
         const userToBeCreated = new userModel(userObj);
         userToBeCreated.save().then(() => console.log('User created'))
