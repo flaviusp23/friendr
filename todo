@@ -23,8 +23,7 @@ poti schima imaginea de la postare
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii
 
-<<<<<<< HEAD
-sa rezolv loginul
+DONE sa rezolv loginul
 paginare
 https
 helmet.js
@@ -33,15 +32,3 @@ improve performace - load balacing
 ?middleware for logs
 UI Design
 ?maybe improve security by deleting post edit button to be showen after a token not by the username in the localstorage
-=======
-paginare
-https
-helmet.js
-social sign in - ouath 
-improve performace - load balacing 
-?middleware for logs 
-UI Design
-?maybe improve security by deleting post edit button to be showen after a token not by the username in the localstorage
-
-
->>>>>>> a0dee79396f4f9e4158e77746095332f4d22f5b3
