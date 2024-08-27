@@ -46,13 +46,13 @@ const usersServices = {
         console.log("Reached LOGIN user services");
         const userObj = await userModel.findOne({ username: username });
         if (!userObj) {
-            throw new Error("Invalid username or password");
+            throw new Error("Invalid username or password1");
         }
         const isPasswordValid = await bcrypt.compare(password, userObj.password);
         if (!isPasswordValid) {
-            throw new Error("Invalid username or password");
+            throw new Error("Invalid username or password123");
         }
-        const token = jwt.sign({ id: userObj.id, username: userObj.username, firstName : userObj.firstName, lastName : userObj.lastName }, kaskavele, { expiresIn: '1h' });
+        const token = jwt.sign({ id: userObj.id, username: userObj.username, firstName : userObj.firstName, lastName : userObj.lastName }, process.env.JWT_SECRET, { expiresIn: '1h' });
         return token
     },
     searchUsers: async (username) => {

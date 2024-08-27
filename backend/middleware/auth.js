@@ -7,7 +7,7 @@ const authenticateToken = (req, res, next) => {
     return res.redirect('/');
   }
 
-  jwt.verify(token, kaskavele, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
       return res.redirect('/');
     }

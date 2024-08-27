@@ -70,6 +70,7 @@ const usersController = {
         }
         try {
             const token = await usersServices.loginUser(username, password);
+            console.log("userObj");
             res.cookie('token', token, {
                 httpOnly: true,
             });

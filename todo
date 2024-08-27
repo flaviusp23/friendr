@@ -22,3 +22,13 @@ poti pune imagini la postari
 poti schima imaginea de la postare
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii
+
+sa rezolv loginul
+paginare
+https
+helmet.js
+social sign in - ouath
+improve performace - load balacing
+?middleware for logs
+UI Design
+?maybe improve security by deleting post edit button to be showen after a token not by the username in the localstorage
