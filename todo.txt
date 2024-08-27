@@ -16,19 +16,20 @@ DONE sa imi ascund cheile secrete cu un env(jwt si mongoDB)
 DONE sa nu existe deja username cand creezi un cont
 DONE sa rezolv cu chestiile din localstorage inutile
 DONE sa rezolv bara de cautari
+DONE sa rezolv loginul
+DONE improve performace - load balacing pm2
+
+
+paginare
+https
+helmet.js
+social sign in - ouath - passport.js
+?middleware for logs
+UI Design
+?maybe improve security by deleting post edit button to be showen after a token not by the username in the localstorage
 poti pune imagine la profil
 poti schimba imaginea de la profil
 poti pune imagini la postari
 poti schima imaginea de la postare
 optional postarile sa fie pe mai multe pagini
 optional sortarea postarile dupa criterii
-
-DONE sa rezolv loginul
-paginare
-https
-helmet.js
-social sign in - ouath - passport.js
-improve performace - load balacing
-?middleware for logs
-UI Design
-?maybe improve security by deleting post edit button to be showen after a token not by the username in the localstorage

@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-"dev": "react-scripts start",
-"start": "serve -s build",
-"build": "react-scripts build",
-"test": "react-scripts test --env=jsdom",
-"eject": "react-scripts eject",
-"heroku-postbuild": "npm run build"
-},
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start": "node index.js",
+    "cluster": "pm2 start index.js -i max",
+    "heroku-postbuild": "npm run build"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -19,6 +20,7 @@
     "express": "^4.19.2",
     "mongoose": "^8.4.4",
     "nodemon": "^3.1.4",
+    "pm2": "^5.4.2",
     "uuid": "^10.0.0",
     "uuidv4": "^6.2.13"
   }
