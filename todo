@@ -27,7 +27,7 @@ DONE sa rezolv loginul
 paginare
 https
 helmet.js
-social sign in - ouath
+social sign in - ouath - passport.js
 improve performace - load balacing
 ?middleware for logs
 UI Design
